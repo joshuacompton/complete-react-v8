@@ -24,3 +24,26 @@ parcel - still valid https://parceljs.org/
 standard for react
 vite requires .jsx but react would work with .js
 vite has "tree shaking" which is "live code inclusion"
+
+# Hooks
+
+useEffect will run something once the component rerenders by default
+add arguments array to end to make it update on state change
+
+## Use effect
+
+some people only use useEffect within a custom hook (ex useBreedList)
+
+# Forms
+
+e is a synthetic dom event
+
+## uncontrolled vs controlled
+
+uncontrolled has a submit function that will process submitted data.
+controlled adds state to each field.
+
+# Routing
+
+HashRouter - dont use unless needed because its bad for SEO
+Use Link from react-router-dom because link doesnt rerender the whole app
