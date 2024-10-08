@@ -30,9 +30,11 @@ vite has "tree shaking" which is "live code inclusion"
 useEffect will run something once the component rerenders by default
 add arguments array to end to make it update on state change
 
-## Use effect
+## useEffect
 
 some people only use useEffect within a custom hook (ex useBreedList)
+most bugs happen here and getting it right is the hardest part of writing maintainable code
+rule - minimize useEffect in your code. if theres an api / tool that can handle it then use that instead
 
 # Forms
 
@@ -47,3 +49,7 @@ controlled adds state to each field.
 
 HashRouter - dont use unless needed because its bad for SEO
 Use Link from react-router-dom because link doesnt rerender the whole app
+
+# React Query
+
+its possible to have multiple query clients in an app but there arent many use cases for this.

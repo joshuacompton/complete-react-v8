@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import fetchSearch from './fetchSearch'
 import Select from './Select'
 import Results from './Results'
 import useBreedList from './useBreedList'
@@ -6,28 +8,27 @@ import useBreedList from './useBreedList'
 const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile']
 
 const SearchParams = () => {
-  const [location, setLocation] = useState('Morton IL')
   const [animal, setAnimal] = useState('')
-  const [breed, setBreed] = useState('')
-  const [pets, setPets] = useState([])
+  const [requestParams, setRequestParams] = useState({
+    animal: '',
+    breed: '',
+    location: '',
+  })
+
   const [breeds] = useBreedList(animal)
-
-  async function requestPets() {
-    const res = await fetch(
-      `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
-    )
-    const json = await res.json()
-    console.log(json)
-    setPets(json.pets)
-  }
-
-  useEffect(() => {
-    requestPets()
-  }, [])
+  const results = useQuery(['search', requestParams], fetchSearch)
+  const pets = results?.data?.pets ?? []
 
   let formSubmit = e => {
     e.preventDefault()
-    requestPets()
+    const formData = new FormData(e.target)
+    const obj = {
+      animal: formData.get('animal') ?? '',
+      breed: formData.get('breed') ?? '',
+      location: formData.get('location') ?? '',
+    }
+
+    setRequestParams(obj)
   }
 
   return (
@@ -35,27 +36,12 @@ const SearchParams = () => {
       <form onSubmit={formSubmit}>
         <label htmlFor="location">
           Location
-          <input
-            onChange={e => setLocation(e.target.value)}
-            id="location"
-            value={location}
-            placeholder="Location"
-          />
+          <input name="location" id="location" placeholder="Location" />
         </label>
 
-        <Select
-          options={ANIMALS}
-          stateValue={animal}
-          stateSet={setAnimal}
-          selectId="animal"
-        />
+        <Select options={ANIMALS} stateSet={setAnimal} selectId="animal" />
 
-        <Select
-          options={breeds}
-          stateValue={breed}
-          stateSet={setBreed}
-          selectId="breed"
-        />
+        <Select options={breeds} selectId="breed" />
 
         <button type="submit">Search</button>
       </form>

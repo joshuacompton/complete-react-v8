@@ -7,7 +7,7 @@ const Pet = ({ name, animal, breed, images, location, id }) => {
   }
 
   return (
-    <Link to={`/details/${id}`}>
+    <Link className="pet" to={`/details/${id}`}>
       <div className="image-container">
         <img src={hero} alt={name} />
       </div>

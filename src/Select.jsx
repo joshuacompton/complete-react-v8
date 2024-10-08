@@ -1,15 +1,26 @@
-const Select = ({ options, defaultOption, stateValue, stateSet, selectId }) => {
+const Select = ({ options, defaultOption, value, stateSet, selectId }) => {
+  let onChange = e => {
+    stateSet(e.target.value)
+  }
+
+  let attributes = {
+    id: selectId,
+    name: selectId,
+    disabled: options.length < 1,
+  }
+
+  if (value) {
+    attributes['value'] = value
+  }
+
+  if (stateSet) {
+    attributes['onChange'] = onChange
+  }
+
   return (
     <label htmlFor={selectId}>
       {selectId}
-      <select
-        id={selectId}
-        value={stateValue}
-        disabled={options.length < 1}
-        onChange={e => {
-          stateSet(e.target.value)
-        }}
-      >
+      <select {...attributes}>
         <option>{defaultOption}</option>
         {options.map(option => (
           <option key={option}>{option}</option>
