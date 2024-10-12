@@ -7,11 +7,11 @@ const Pet = ({ name, animal, breed, images, location, id }) => {
   }
 
   return (
-    <Link className="pet" to={`/details/${id}`}>
+    <Link className="relative block" to={`/details/${id}`}>
       <div className="image-container">
         <img src={hero} alt={name} />
       </div>
-      <div className="info">
+      <div className="absolute bottom-0 left-0 bg-gradient-to-tr from-white to-transparent pr-2 pt-2">
         <h2>{name}</h2>
         <h3>
           {animal} - {breed} - {location}

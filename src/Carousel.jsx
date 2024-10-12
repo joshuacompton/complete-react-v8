@@ -18,17 +18,23 @@ export default class Carousel extends Component {
     return (
       <div className="carousel">
         <img src={images[active]} alt="animal hero" />
-        <div className="carousel-smaller">
-          {images.map((photo, index) => (
-            <img
-              onClick={this.handleIndexClick}
-              data-index={index}
-              key={photo}
-              src={photo}
-              className={index === active ? 'active' : ''}
-              alt="animal thumbnail"
-            />
-          ))}
+        <div className="flex gap-1 pt-2">
+          {images.map((photo, index) => {
+            let classes = 'w-1/6'
+            if (index === active) {
+              classes += ' active'
+            }
+            return (
+              <img
+                onClick={this.handleIndexClick}
+                data-index={index}
+                key={photo}
+                src={photo}
+                className={classes}
+                alt="animal thumbnail"
+              />
+            )
+          })}
         </div>
       </div>
     )

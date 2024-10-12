@@ -4,6 +4,7 @@ const Select = ({ options, defaultOption, value, stateSet, selectId }) => {
   }
 
   let attributes = {
+    className: 'search-input grayed-out-disable',
     id: selectId,
     name: selectId,
     disabled: options.length < 1,

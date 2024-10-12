@@ -32,18 +32,32 @@ const SearchParams = () => {
   }
 
   return (
-    <div className="search-params">
-      <form onSubmit={formSubmit}>
+    <div className="my-0 mx-auto w-11/12">
+      <form
+        className="p-10 mb-10 rounded-lg bg-gray-200 shadow-lg flex flex-col justify-center items-center"
+        onSubmit={formSubmit}
+      >
         <label htmlFor="location">
           Location
-          <input name="location" id="location" placeholder="Location" />
+          <input
+            className="search-input"
+            type="text"
+            name="location"
+            id="location"
+            placeholder="Location"
+          />
         </label>
 
         <Select options={ANIMALS} stateSet={setAnimal} selectId="animal" />
 
         <Select options={breeds} selectId="breed" />
 
-        <button type="submit">Search</button>
+        <button
+          className="rounded px-6 py-2 color text-white hover:opacity-70 border-none bg-orange-500"
+          type="submit"
+        >
+          Search
+        </button>
       </form>
 
       <Results pets={pets} />

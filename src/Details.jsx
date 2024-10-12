@@ -21,10 +21,10 @@ const Details = () => {
   }
 
   const pet = results.data.pets[0]
-
   return (
-    <div className="details">
+    <div className="ml-4">
       <Carousel images={pet.images} />
+
       <div>
         <h2>{pet.name}</h2>
         <h3>
