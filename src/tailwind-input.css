@@ -12,6 +12,10 @@
   .search-input {
     @apply w-60 mb-5 block;
   }
+
+  .primary-button {
+    @apply text-white bg-red-800 rounded-md border-black border-2 px-4 mx-2;
+  }
 }
 
 @layer utilities {

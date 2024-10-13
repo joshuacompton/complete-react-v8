@@ -15,7 +15,12 @@ const Modal = ({ children }) => {
   }, [])
 
   // whatever is returned from useEffect will be run when the component is unmounted.
-  return createPortal(<div>{children}</div>, elRef.current)
+  return createPortal(
+    <div className="fixed top-0 left-0 w-full h-full bg-black/70 z-20">
+      {children}
+    </div>,
+    elRef.current
+  )
 }
 
 export default Modal

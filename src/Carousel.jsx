@@ -16,11 +16,11 @@ export default class Carousel extends Component {
     const { images } = this.props
 
     return (
-      <div className="carousel">
-        <img src={images[active]} alt="animal hero" />
-        <div className="flex gap-1 pt-2">
+      <div className="flex flex-col lg:flex-row gap-8">
+        <img className="" src={images[active]} alt="animal hero" />
+        <div className="flex gap-1 pt-2 flex-wrap  gap-8">
           {images.map((photo, index) => {
-            let classes = 'w-1/6'
+            let classes = 'w-28 h-28 rounded-full border-2 border-black'
             if (index === active) {
               classes += ' active'
             }
